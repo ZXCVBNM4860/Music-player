@@ -38,9 +38,9 @@
 
 - Windows 10/11
 - Python 3.10+
-- [NeteaseCloudMusicApi Enhanced](https://github.com/...) 服务（需自行部署）
+- [NeteaseCloudMusicApi Enhanced](https://github.com/xgxdmx/NeteaseMusic-API) 服务（需自行部署）
 
-> [NeteaseCloudMusicApi Enhanced](https://github.com/...) service (self-hosted)
+> [NeteaseCloudMusicApi Enhanced](https://github.com/xgxdmx/NeteaseMusic-API) service (self-hosted)
 
 ## 安装 / Installation
 
