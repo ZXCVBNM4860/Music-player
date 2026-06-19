@@ -1,4 +1,3 @@
-[Uploading README.md…]()
 # Netease Downloader
 
 网易云音乐下载器，基于 PyQt6 + NeteaseCloudMusicApi Enhanced。
