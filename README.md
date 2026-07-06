@@ -27,7 +27,7 @@ Music player，基于 PyQt6 + NeteaseCloudMusicApi Enhanced。
 - 搜索歌曲、歌单、MV / Search songs, playlists, and MVs
 - 单曲/歌单/MV 下载 / Download single songs, playlists, and MVs
 - 支持 MP3（128k/320k）和 FLAC 格式选择 / Support MP3 (128k/320k) and FLAC quality selection
-- 五线程下载 / 5-thread concurrent downloading
+- 快速下载 / Quick Download
 - 断点续传 / Resume interrupted downloads
 - 下载历史记录 / Download history tracking
 - 预览播放 / Preview playback
