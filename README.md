@@ -28,11 +28,12 @@ Music player，基于 PyQt6 + NeteaseCloudMusicApi Enhanced。
 - 单曲/歌单/MV 下载 / Download single songs, playlists, and MVs
 - 支持 MP3（128k/320k）和 FLAC 格式选择 / Support MP3 (128k/320k) and FLAC quality selection
 - 快速下载 / Quick Download
-- 断点续传 / Resume interrupted downloads
+- 智能跳过已下载内容 / Smart skip for already-downloaded items
 - 下载历史记录 / Download history tracking
 - 预览播放 / Preview playback
 - 内置 AI 助手（DeepSeek）/ Built-in AI assistant (DeepSeek)
 - 中英文实时切换 / Real-time Chinese/English language switching
+- 暗色/亮色主题切换 / Dark/Light theme switching
 
 ## 系统要求 / System Requirements
 
@@ -77,7 +78,7 @@ python main.py
 ## 打包 / Build
 
 ```bash
-pyinstaller --onefile --noconsole --name Music_player --add-data "language;language" --hidden-import PyQt6.QtMultimedia --hidden-import PyQt6.QtMultimediaWidgets main.py
+pyinstaller --onefile --noconsole --name Music_player --add-data "language;language" --add-data "resources;resources" --hidden-import PyQt6.QtMultimedia main.py
 ```
 
 打包后的文件位于 `dist/Music_player.exe`。
