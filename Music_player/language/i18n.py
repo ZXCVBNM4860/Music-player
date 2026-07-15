@@ -2,7 +2,15 @@
 
 import json
 import os
+import sys
 from typing import Dict, Optional
+
+
+def resource_path(relative_path: str) -> str:
+    """获取资源文件的绝对路径，兼容开发环境和 PyInstaller 打包后"""
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
 
 class Translator:
@@ -12,8 +20,7 @@ class Translator:
         self._load_lang(self._lang)
     
     def _load_lang(self, lang: str):
-        base = os.path.dirname(os.path.abspath(__file__))
-        path = os.path.join(base, f"{lang}.json")
+        path = resource_path(os.path.join("language", f"{lang}.json"))
         if os.path.exists(path):
             with open(path, "r", encoding="utf-8") as f:
                 self._strings = json.load(f)
