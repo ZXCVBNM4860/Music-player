@@ -31,12 +31,10 @@ This project is for educational and personal use only. Do not use it for commerc
 - Support MP3 (128k/320k) and FLAC quality selection
 - 快速下载
 - Quick Download
-- 智能跳过已下载内容
-- Smart skip for already-downloaded items
 - 下载历史记录
 - Download history tracking
-- 预览播放
-- Preview playback
+- 播放
+- Play
 - 内置 AI 助手（DeepSeek）
 - Built-in AI assistant (DeepSeek)
 - 中英文实时切换
@@ -50,45 +48,6 @@ This project is for educational and personal use only. Do not use it for commerc
 - Python 3.10+
 - [NeteaseCloudMusicApi Enhanced](https://github.com/xgxdmx/NeteaseMusic-API) 服务（需自行部署）
 - [NeteaseCloudMusicApi Enhanced](https://github.com/xgxdmx/NeteaseMusic-API) service (self-hosted)
-
-## 安装 / Installation
-
-### 1. 克隆仓库 / Clone the repository
-
-```bash
-git clone https://github.com/ZXCVBNM4860/Music-player.git
-cd Music-player
-```
-
-### 2. 安装依赖 / Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. 启动 API 服务 / Start the API service
-
-先启动 NeteaseCloudMusicApi 服务 / Start the NeteaseCloudMusicApi service first：
-
-```bash
-# 在 API 服务目录 / In the API service directory
-npm start
-```
-
-### 4. 运行程序 / Run the application
-
-```bash
-python main.py
-```
-
-## 打包 / Build
-
-```bash
-pyinstaller --onefile --noconsole --name Music_player --add-data "language;language" --add-data "resources;resources" --hidden-import PyQt6.QtMultimedia main.py
-```
-
-打包后的文件位于 `dist/Music_player.exe`。
-The packaged file is located at `dist/Music_player.exe`.
 
 ## 许可证 / License
 
