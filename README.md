@@ -33,8 +33,6 @@ This project is for educational and personal use only. Do not use it for commerc
 - Quick Download
 - 下载历史记录
 - Download history tracking
-- 播放
-- Play
 - 内置 AI 助手（DeepSeek）
 - Built-in AI assistant (DeepSeek)
 - 中英文实时切换
