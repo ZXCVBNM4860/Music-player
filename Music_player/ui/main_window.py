@@ -1,6 +1,7 @@
 """主窗口"""
 
 import os
+import sys
 from PyQt6.QtWidgets import QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QStatusBar, QToolBar, QApplication
 from PyQt6.QtCore import Qt, QSettings, QTimer
 from PyQt6.QtGui import QPalette
@@ -16,10 +17,16 @@ from ui.deepseek_chat import DeepSeekChat
 from core.downloader import DownloadTask
 
 
+def resource_path(relative_path: str) -> str:
+    """获取资源文件的绝对路径，兼容开发环境和 PyInstaller 打包后"""
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
+
 def load_stylesheet(theme: str) -> str:
     #加载主题样式表
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    qss_path = os.path.join(base_dir, "resources", "themes", f"{theme}.qss")
+    qss_path = resource_path(os.path.join("resources", "themes", f"{theme}.qss"))
     if os.path.exists(qss_path):
         with open(qss_path, "r", encoding="utf-8") as f:
             return f.read()
