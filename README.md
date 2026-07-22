@@ -43,7 +43,7 @@ This project is for educational and personal use only. Do not use it for commerc
 ## 系统要求 / System Requirements
 
 - Windows 10/11
-- Python 3.10+
+- Python 3.9+
 - [NeteaseCloudMusicApi Enhanced](https://github.com/xgxdmx/NeteaseMusic-API) 服务（需自行部署）
 - [NeteaseCloudMusicApi Enhanced](https://github.com/xgxdmx/NeteaseMusic-API) service (self-hosted)
 
