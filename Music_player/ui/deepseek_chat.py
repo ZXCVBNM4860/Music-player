@@ -19,13 +19,11 @@ from language import i18n
 
 
 def copy_to_clipboard(text: str):
-    # 复制文本到剪贴板
     clipboard = QApplication.clipboard()
     clipboard.setText(text)
 
 
 def parse_markdown(text: str):
-    # 解析 markdown，提取代码块和普通文本
     pattern = r'```(\w*)\n(.*?)```'
     parts = []
     last_end = 0
@@ -57,8 +55,10 @@ class AIWorker(QThread):
                 model="deepseek-v4-pro",
                 messages=self.messages,
                 stream=False,
-                reasoning_effort="high",
-                extra_body={"thinking": {"type": "enabled"}}
+                extra_body={
+                    "reasoning_effort": "high",
+                    "thinking": {"type": "enabled"}
+                }
             )
             message = response.choices[0].message
             content = message.content or ""
@@ -301,7 +301,6 @@ class DeepSeekChat(QMainWindow):
         super().__init__(parent)
         self.setWindowTitle(i18n.tr("deepseek_chat"))
         self.setMinimumSize(700, 600)
-        # 强制窗口背景为浅色，避免跟随系统主题导致文字看不清
         self.setStyleSheet("QMainWindow { background-color: #2d2d2d; }")
 
         self.client = OpenAI(
@@ -322,13 +321,11 @@ class DeepSeekChat(QMainWindow):
         layout.setContentsMargins(16, 16, 16, 16)
         layout.setSpacing(12)
 
-        # 标题
         title = QLabel(i18n.tr("deepseek_assistant"))
         title.setStyleSheet("font-size: 14pt; font-weight: bold; color: #ffffff;")
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(title)
 
-        # 聊天记录
         scroll = QScrollArea()
         scroll.setWidgetResizable(True)
         scroll.setFrameShape(QFrame.Shape.NoFrame)
@@ -343,7 +340,6 @@ class DeepSeekChat(QMainWindow):
         scroll.setWidget(self.chat_container)
         layout.addWidget(scroll, stretch=1)
 
-        # 输入区域
         input_frame = QFrame()
         input_frame.setStyleSheet("""
             QFrame {
@@ -402,7 +398,6 @@ class DeepSeekChat(QMainWindow):
 
         layout.addWidget(input_frame)
 
-        # 状态栏
         self.status_label = QLabel(_VERSION)
         self.status_label.setStyleSheet("color: #aaaaaa; font-size: 9pt;")
         layout.addWidget(self.status_label)
