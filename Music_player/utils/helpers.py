@@ -2,6 +2,7 @@
 
 import os
 import sys
+from pathlib import Path
 
 
 def clean_filename(name: str) -> str:
@@ -36,15 +37,15 @@ def format_time(seconds: float) -> str:
 def get_default_download_path() -> str:
     """
     获取默认下载路径。
-    - 源码运行：项目根目录下的 downloads/
-    - PyInstaller 打包后：exe 同级目录下的 downloads/
+    源码运行：项目根目录下的 downloads/
+    PyInstaller 打包后：exe 同级目录下的 downloads/
     """
     if getattr(sys, 'frozen', False):
-        # PyInstaller 打包后
         base_dir = os.path.dirname(sys.executable)
     else:
-        # 源码运行，helpers.py 位于 utils/，项目根目录是其父目录
-        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        # helpers.py 位于 utils/，项目根目录是其父目录
+        base_dir = Path(__file__).parent.parent
+        base_dir = str(base_dir)
     
     download_dir = os.path.join(base_dir, "downloads")
     os.makedirs(download_dir, exist_ok=True)
