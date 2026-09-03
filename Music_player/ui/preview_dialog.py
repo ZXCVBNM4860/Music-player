@@ -1,4 +1,4 @@
-"""预览播放弹窗（改进版：时间标签 + 拖动跳转 + closeEvent 保护）"""
+"""预览播放弹窗"""
 
 from PyQt6.QtWidgets import (
     QDialog, QVBoxLayout, QHBoxLayout, QLabel, 
@@ -60,7 +60,7 @@ class PreviewDialog(QDialog):
         self._loaded = False
         self._loop = False
         self._muted = False
-        self._is_dragging = False  # 是否正在拖动滑块
+        self._is_dragging = False
         
         self._build_ui(song_name, artist)
         self._setup_player()
@@ -217,13 +217,14 @@ class PreviewDialog(QDialog):
             pass
     
     def _on_slider_moved_preview(self, value):
-        """拖动时预览时间，不实际跳转"""
         if self.player.duration() > 0:
             pos = int((value / 100) * self.player.duration())
             self._update_time_label(pos, self.player.duration())
     
     def _on_slider_released(self):
-        """释放滑块时才真正跳转"""
+        # 边界保护：如果未按下就释放，直接返回
+        if not self._is_dragging:
+            return
         self._is_dragging = False
         if self.player.duration() > 0:
             value = self.progress_slider.value()
@@ -232,7 +233,6 @@ class PreviewDialog(QDialog):
             self._update_time_label(pos, self.player.duration())
     
     def _update_time_label(self, position, duration):
-        """格式化并更新时间标签"""
         if duration <= 0:
             self.time_label.setText("00:00 / 00:00")
             return
@@ -247,7 +247,6 @@ class PreviewDialog(QDialog):
             self._update_time_label(position, self.player.duration())
     
     def _update_duration(self, duration):
-        # 更新总时长
         if duration > 0:
             self._update_time_label(self.player.position(), duration)
     
@@ -263,7 +262,6 @@ class PreviewDialog(QDialog):
             )
 
     def closeEvent(self, event):
-        """关闭时安全停止播放器（异常保护）"""
         try:
             self.player.stop()
         except Exception:
