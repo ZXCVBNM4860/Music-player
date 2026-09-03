@@ -27,7 +27,7 @@ from utils.theme_loader import load_stylesheet, detect_system_theme
 
 
 class _PreviewFetcher(QObject):
-    """预览 URL 获取工作线程（提取到模块级别，避免方法内嵌套类）"""
+    """预览 URL 获取工作线程"""
     finished = pyqtSignal(object)
 
     def __init__(self, api, sid, br):
@@ -35,9 +35,16 @@ class _PreviewFetcher(QObject):
         self.api = api
         self.sid = sid
         self.br = br
+        self._running = True
+
+    def stop(self):
+        self._running = False
 
     def run(self):
         try:
+            if not self._running:
+                self.finished.emit(None)
+                return
             u = self.api.get_download_url(self.sid, self.br)
         except Exception:
             u = None
@@ -55,6 +62,7 @@ class MainWindow(QMainWindow):
         self._search_dialog = None
         self._preview_dialog = None
         self._playlist_dialog = None
+        self._preview_threads = []  # 新增：追踪预览线程
         self._build_ui()
         self._build_menu()
         self._connect_signals()
@@ -114,6 +122,9 @@ class MainWindow(QMainWindow):
         from PyQt6.QtWidgets import QMenu, QToolButton
         
         menubar = self.menuBar()
+        # 清理旧菜单（防止语言切换时累积）
+        menubar.clear()
+        
         view_menu = QMenu(i18n.tr("view"), self)
 
         theme_menu = view_menu.addMenu(i18n.tr("theme"))
@@ -271,6 +282,10 @@ class MainWindow(QMainWindow):
                 fetcher.moveToThread(thread)
                 thread.started.connect(fetcher.run)
 
+                # 记录线程以便清理
+                self._preview_threads.append(thread)
+                thread.finished.connect(lambda: self._preview_threads.remove(thread))
+
                 def on_finished(u):
                     if u:
                         self._preview_dialog.set_source(u)
@@ -403,6 +418,9 @@ class MainWindow(QMainWindow):
             pass
 
     def _reload_ui(self):
+        # 清理旧菜单
+        self.menuBar().clear()
+        # 清理旧工具栏
         for tb in self.findChildren(QToolBar):
             self.removeToolBar(tb)
             tb.deleteLater()
@@ -442,8 +460,19 @@ class MainWindow(QMainWindow):
         self.api_status.set_online(online, msg)
     
     def closeEvent(self, event):
+        # 停止下载器
         if self._downloader and self._downloader.isRunning():
             self._downloader.stop()
+        # 停止所有预览线程
+        for thread in self._preview_threads[:]:
+            if thread.isRunning():
+                # 通知 fetcher 停止
+                for child in thread.findChildren(_PreviewFetcher):
+                    child.stop()
+                thread.quit()
+                thread.wait(1000)
+        self._preview_threads.clear()
+        # 关闭子窗口
         if self._ai_chat:
             self._ai_chat.close()
         if self._search_dialog:
