@@ -58,7 +58,7 @@ class LogPanel(QWidget):
                 selection-color: #eaeaea;
             }
             '''
-        self.text_edit.setStyleSheet("")
+        # 直接设置新样式，无需先清空
         self.text_edit.setStyleSheet(sheet)
         self.text_edit.viewport().update()
     
