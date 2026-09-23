@@ -1,2 +1,0 @@
-version = "beta 1.8"
-build_date = "2026-09-03"
