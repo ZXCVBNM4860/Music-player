@@ -1,0 +1,422 @@
+/* 基础 */
+QMainWindow, QWidget, QDialog {
+    background-color: #0a0a0a;
+    color: #ffffff;
+}
+
+QLineEdit, QComboBox, QSpinBox, QTextEdit, QTableWidget {
+    background-color: #141414;
+    color: #ffffff;
+    border: 1px solid #333333;
+    padding: 5px;
+    border-radius: 3px;
+    selection-background-color: #00ff88;
+    selection-color: #0a0a0a;
+}
+
+QLineEdit:focus, QComboBox:focus { border-color: #555555; }
+
+QPushButton {
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #333333;
+    padding: 8px 16px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+QPushButton:hover   { background-color: #1a1a1a; border-color: #555555; }
+QPushButton:pressed { background-color: #333333; }
+QPushButton:disabled {
+    background-color: #0a0a0a;
+    color: #666666;
+    border-color: #1a1a1a;
+}
+
+QRadioButton, QCheckBox, QLabel { color: #ffffff; }
+
+QRadioButton::indicator {
+    width: 16px;
+    height: 16px;
+    background-color: #141414;
+    border: 2px solid #333333;
+    border-radius: 8px;
+}
+QRadioButton::indicator:checked {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    background-color: #141414;
+    border: 2px solid #333333;
+    border-radius: 3px;
+}
+QCheckBox::indicator:hover {
+    border-color: #555555;
+}
+QCheckBox::indicator:checked {
+    background-color: #00ff88;
+    border-color: #00ff88;
+}
+
+QGroupBox {
+    border: 1px solid #333333;
+    margin-top: 10px;
+    padding-top: 10px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+QProgressBar {
+    border: 1px solid #333333;
+    border-radius: 3px;
+    background-color: #0a0a0a;
+    text-align: center;
+    color: #ffffff;
+}
+QProgressBar::chunk { background-color: #ffffff; border-radius: 2px; }
+
+QScrollBar:vertical { background: #0a0a0a; width: 12px; border: none; }
+QScrollBar::handle:vertical {
+    background: #333333; border-radius: 6px; min-height: 30px;
+}
+QScrollBar::handle:vertical:hover { background: #555555; }
+
+QHeaderView::section {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 5px;
+    border: 1px solid #333333;
+}
+
+QMenu { background-color: #1a1a1a; color: #ffffff; border: 1px solid #333333; }
+QMenu::item:selected { background-color: #333333; }
+
+QStatusBar { background-color: #0a0a0a; color: #888888; }
+
+QToolTip {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border: 1px solid #333333;
+}
+
+/* API 状态指示 */
+QLabel#apiDot { font-size: 14px; }
+QLabel#apiDot[state="online"]  { color: #00ff88; }
+QLabel#apiDot[state="offline"] { color: #ff4444; }
+
+QLabel#apiText { font-size: 10px; }
+QLabel#apiText[state="online"]  { color: #00ff88; }
+QLabel#apiText[state="offline"] { color: #ff4444; }
+
+/* 下载进度 */
+QLabel#progressStatus { color: #666666; font-size: 10px; }
+QLabel#progressSpeed  { color: #888888; font-size: 9px; }
+QLabel#progressDetail { color: #666666; font-size: 9px; }
+
+QProgressBar#downloadProgress { color: #ffffff; }
+QProgressBar#downloadProgress[level="high"] { color: #0a0a0a; }
+
+/* 下载面板按钮 */
+QPushButton#downloadSearchBtn,
+QPushButton#downloadAiBtn,
+QPushButton#downloadStartBtn {
+    font-weight: bold;
+    padding: 10px;
+}
+
+/* 封面 */
+QLabel#coverWidget {
+    background-color: #1a1a1a;
+    border: 1px solid #333333;
+    border-radius: 8px;
+}
+QLabel#coverWidget[placeholder="true"] {
+    color: #555555;
+    font-size: 48pt;
+}
+
+/* 预览播放器 */
+QDialog#previewDialog { background-color: #121212; color: #eaeaea; }
+QDialog#previewDialog QLabel { color: #eaeaea; }
+
+QDialog#previewDialog QPushButton {
+    background-color: #242424;
+    color: #eaeaea;
+    border: 1px solid #2a2a2a;
+    padding: 8px;
+    min-width: 60px;
+    border-radius: 4px;
+}
+QDialog#previewDialog QPushButton:hover { background-color: #2d2d2d; }
+
+QDialog#previewDialog QSlider { background: transparent; }
+QDialog#previewDialog QSlider::groove:horizontal {
+    background: #2d2d2d; height: 6px; border-radius: 3px;
+}
+QDialog#previewDialog QSlider::handle:horizontal {
+    background: #eaeaea;
+    width: 14px; height: 14px;
+    margin: -4px 0;
+    border-radius: 7px;
+}
+QDialog#previewDialog QSlider::sub-page:horizontal {
+    background: #a0a0a0; border-radius: 3px;
+}
+
+QLabel#previewName   { font-size: 14px; font-weight: bold; }
+QLabel#previewArtist { color: #666666; }
+QLabel#previewTime   { color: #888888; font-size: 10px; font-family: monospace; }
+
+QPushButton#previewBigPlay {
+    font-size: 20px;
+    border-radius: 32px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+/* 本地播放器 */
+QTableWidget#playerTable {
+    background-color: #141414;
+    color: #eaeaea;
+    border: 1px solid #333333;
+    gridline-color: #2a2a2a;
+}
+QTableWidget#playerTable QHeaderView::section {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 6px;
+    border: 1px solid #333333;
+}
+
+QTabWidget#playerTabs::pane {
+    border: 1px solid #333333;
+    background-color: #1a1a1a;
+}
+QTabWidget#playerTabs QTabBar::tab {
+    background-color: #141414;
+    color: #aaaaaa;
+    padding: 6px 12px;
+    border: 1px solid #333333;
+}
+QTabWidget#playerTabs QTabBar::tab:selected {
+    background-color: #2a2a2a;
+    color: #ffffff;
+}
+
+QLabel#nowPlaying { color: #eaeaea; font-size: 11pt; font-weight: bold; }
+QLabel#playerTime { color: #888888; font-family: monospace; }
+
+/* 播放列表 widget */
+QListWidget#playlistList {
+    background-color: #141414;
+    color: #eaeaea;
+    border: 1px solid #333333;
+    border-radius: 4px;
+}
+QListWidget#playlistList::item { padding: 6px; }
+QListWidget#playlistList::item:selected { background-color: #2a2a2a; }
+
+/* 均衡器 */
+QLabel#eqGain { color: #888888; font-size: 9pt; }
+QLabel#eqFreq { color: #666666; font-size: 8pt; }
+
+/* 安装向导 */
+QTextEdit#installerLog {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    font-family: Consolas, monospace;
+    font-size: 9pt;
+    padding: 6px;
+}
+QPushButton#installerStart { font-weight: bold; padding: 8px 24px; }
+
+/* 登录提示 */
+QLabel#neteaseLoginTip {
+    padding: 8px;
+    background-color: #2a2a2a;
+    color: #eaeaea;
+    font-size: 10pt;
+}
+
+/* 网易云歌单管理 */
+QLabel#npHeader { font-size: 11pt; font-weight: bold; padding: 4px; }
+QLabel#npHint   { color: #888888; padding: 2px 4px; }
+
+QListWidget#npList {
+    background-color: #141414;
+    color: #eaeaea;
+    border: 1px solid #333333;
+}
+QListWidget#npList::item { padding: 6px; }
+QListWidget#npList::item:selected { background-color: #2a2a2a; }
+
+/* DeepSeek 聊天 */
+QMainWindow#deepseekChat { background-color: #2d2d2d; }
+
+QLabel#chatTitle  { font-size: 14pt; font-weight: bold; color: #ffffff; }
+QLabel#chatStatus { color: #aaaaaa; font-size: 9pt; }
+
+QFrame#chatInputFrame {
+    background-color: #3a3a3a;
+    border: 1px solid #555555;
+    border-radius: 10px;
+}
+QFrame#chatInputFrame QLineEdit {
+    background-color: #3a3a3a;
+    color: #ffffff;
+    border: none;
+    font-size: 10pt;
+    padding: 4px;
+}
+QFrame#chatInputFrame QPushButton {
+    background-color: #4a4a4a;
+    color: #ffffff;
+    border: 1px solid #666666;
+    border-radius: 6px;
+    font-size: 9pt;
+}
+QFrame#chatInputFrame QPushButton:hover { background-color: #5a5a5a; }
+
+QPushButton#chatClearBtn {
+    background-color: transparent;
+    color: #aaaaaa;
+    border: 1px solid #666666;
+    font-size: 9pt;
+}
+QPushButton#chatClearBtn:hover {
+    background-color: #4a4a4a;
+    color: #ffffff;
+}
+
+/* 气泡 */
+QLabel#textBlock {
+    color: #ffffff;
+    font-size: 10pt;
+    line-height: 1.6;
+    padding: 8px 0;
+}
+QFrame#userBubble {
+    background-color: #4a4a4a;
+    border: 1px solid #666666;
+    border-radius: 12px 12px 4px 12px;
+}
+QLabel#userBubbleText {
+    color: #ffffff;
+    font-size: 10pt;
+    line-height: 1.5;
+}
+QFrame#thinkingBubble {
+    background-color: #3a3a3a;
+    border: 1px dashed #666666;
+    border-radius: 8px;
+}
+QLabel#thinkingText {
+    color: #cccccc;
+    font-size: 9pt;
+    line-height: 1.5;
+}
+
+/* 代码块 */
+QFrame#codeBlockHeader {
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+}
+QLabel#codeLang {
+    color: #8b949e;
+    font-size: 9pt;
+    font-weight: bold;
+}
+QPushButton#codeCopyBtn {
+    background-color: #21262d;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-size: 9pt;
+}
+QPushButton#codeCopyBtn:hover { background-color: #30363d; color: #ffffff; }
+QPushButton#codeCopyBtn[copied="true"] {
+    background-color: #238636;
+    color: #ffffff;
+    border: 1px solid #238636;
+}
+
+QPlainTextEdit#codeEdit {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    border-radius: 0 0 8px 8px;
+    padding: 8px 12px;
+    font-family: "Consolas", "SF Mono", "Fira Code", monospace;
+    font-size: 10pt;
+}
+QPlainTextEdit#codeEdit QScrollBar:vertical {
+    background: #0d1117;
+    width: 6px;
+    margin: 0;
+}
+QPlainTextEdit#codeEdit QScrollBar::handle:vertical {
+    background: #30363d;
+    border-radius: 3px;
+    min-height: 20px;
+}
+QPlainTextEdit#codeEdit QScrollBar::add-line:vertical,
+QPlainTextEdit#codeEdit QScrollBar::sub-line:vertical { height: 0px; }
+QPlainTextEdit#codeEdit QScrollBar::add-page:vertical,
+QPlainTextEdit#codeEdit QScrollBar::sub-page:vertical { background: transparent; }
+
+/* 搜索 / 歌单对话框 */
+QDialog#searchDialog,
+QDialog#playlistDialog { background-color: #0a0a0a; }
+
+/* 安装向导 tip */
+QLabel#installerTip { color: #cccccc; }
+
+/* 预览播放器图标按钮 */
+QPushButton#previewMute,
+QPushButton#previewRepeat { font-size: 14px; }
+
+QPushButton#previewPrev,
+QPushButton#previewNext { font-size: 16px; }
+
+/* 本地播放器主窗口 */
+QMainWindow#localPlayer { background-color: #1e1e1e; }
+
+/* 日志面板 */
+QTextEdit#logPanel {
+    background-color: #1a1a1a;
+    color: #eaeaea;
+    border: 1px solid #333333;
+    font-family: Consolas;
+    font-size: 9pt;
+    padding: 8px;
+    selection-background-color: #2d2d2d;
+    selection-color: #eaeaea;
+}
+
+QPushButton#installApiButton {
+    margin-bottom: 6px;
+    padding: 4px 12px;
+}
+
+QFrame#searchPreviewBar {
+    background-color: #141414;
+    border: 1px solid #333333;
+    border-radius: 4px;
+}
+
+QLabel#searchPreviewLabel {
+    color: #eaeaea;
+    font-size: 10pt;
+}
+
+QLabel#searchPreviewTime {
+    color: #888888;
+    font-family: monospace;
+    font-size: 10px;
+}
