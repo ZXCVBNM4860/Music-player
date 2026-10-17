@@ -1,10 +1,6 @@
 @echo off
 chcp 65001 >nul
 
-pip install --upgrade pyinstaller
-cls
-
-cls
 pyinstaller --noconfirm --windowed --onedir --name "Music_Player" --add-data "resources/themes;resources/themes" --add-data "language;language" --collect-all PyQt6.QtWebEngineCore --collect-all _sounddevice_data --collect-all pedalboard --collect-all imageio_ffmpeg --hidden-import numpy.core._multiarray_umath main.py
 cls
 del /q "Music_Player.spec"
