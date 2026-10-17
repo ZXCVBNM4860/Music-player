@@ -1,0 +1,2 @@
+#!/bin/bash
+pyinstaller --noconfirm --onedir --windowed --name Music_Player --add-data "resources/themes:resources/themes" --add-data "language:language" --collect-all _sounddevice_data --collect-all pedalboard --collect-all imageio_ffmpeg --hidden-import numpy.core._multiarray_umath main.py
