@@ -3,9 +3,6 @@ chcp 65001 >nul
 
 pip install --upgrade pyinstaller
 cls
-D:
-cd D:\Python\Music_player
-cls
 
 rd /s /q "__pycache__"
 rd /s /q "core\__pycache__"
