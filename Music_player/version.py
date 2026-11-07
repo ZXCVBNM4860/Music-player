@@ -1,2 +1,0 @@
-version = "1.5.0"
-build_date = "2026-11-6"
